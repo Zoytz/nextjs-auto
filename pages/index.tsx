@@ -62,8 +62,6 @@ export default function App({
           style={{
             width: '100%',
           }}
-          options={[]}
-          onChange={() => console.log()}
           multiple
           maxTagCount='responsive'
           disabled
