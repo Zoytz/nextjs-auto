@@ -6,6 +6,7 @@ import styles from '../../styles/App.module.css';
 import Menu from '../../components/Menu/Menu';
 import { useEffect, useState } from 'react';
 import columns from '../../utils/utils';
+import { getAllMarks } from '../../lib/mark';
 
 export type MenuCarType = {
   markOfCar: string
@@ -17,10 +18,10 @@ type DefaultCarType = {
   mark: string
   model: string
   engine: {
-  power: number
-  volume: number
-  transmission: string
-  fuel: string
+    power: number
+    volume: number
+    transmission: string
+    fuel: string
   },
   drive: string
   equipmentName: string
@@ -48,7 +49,20 @@ type PageCarType = {
 
 const { SHOW_CHILD } = Cascader;
 
-export async function getServerSideProps(context: {params: Record<string, string>}) {
+export async function getStaticPaths() {
+  const client = await clientPromise;
+  const db = client.db('hrTest');
+  const marksOfCars = await db
+    .collection('stock')
+    .distinct('mark')
+  const paths = getAllMarks(marksOfCars);
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context: { params: Record<string, string> }) {
   const { params } = context;
   try {
     const client = await clientPromise;
@@ -119,7 +133,7 @@ export async function getServerSideProps(context: {params: Record<string, string
 
 export default function CarMarkPage({
   menuCars, pageCars, pageCarsModels
-}: InferGetStaticPropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
 
   const pageCarsModelsSet = Array.from(new Set(pageCarsModels));
   const options = pageCarsModelsSet.map((pageCarsModel) => {
