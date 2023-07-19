@@ -1,1 +1,1 @@
-# nextjs-auto
+nextjs-auto.vercel.app
