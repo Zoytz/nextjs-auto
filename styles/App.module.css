@@ -1,0 +1,15 @@
+.main {
+  padding-top: 50px;
+  margin: 0 auto;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 auto;
+  gap: 20px;
+}
+
+.main__hint {
+  margin: 0;
+  font-weight: bold;
+}

@@ -1,0 +1,33 @@
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  gap: 20px;
+  padding: 0;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.menu__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.menu__link {
+  text-decoration: none;
+  color: #6d9ff4;
+}
+
+.menu__link_type_active {
+  text-decoration: none;
+  color: #1564ed;
+  font-weight: bold;
+}
+
+.menu__counter {
+  margin: 0;
+  color: grey;
+}
